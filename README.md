@@ -8,7 +8,6 @@ Input file format should be as following:</br>
 location,timestamp,temperature,pressure,humidity
 
 In current version, 10 cities are available:
-
 * Sydney
 * Melbourne
 * Canberra
