@@ -1,5 +1,5 @@
 # GenerateWeather
-This is a program for generating 24 hour testing data with interal as 30 minutes for weather model
+This is a program for generating 24 hour testing data with time interval as 30 minutes for weather model
 
 To run the script, please use following code:</br>
   `python GenerateWeather.py --input input file path --output output file path`
