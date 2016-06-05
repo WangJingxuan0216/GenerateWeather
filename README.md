@@ -35,10 +35,10 @@ Since relation among temperature, pressure and humidity in meterology is too com
 
 ##Climate type:
 I introuded climate type as a factor in the model, for current version, 5 types are available:
-*Humid Subtropical climate
-*Mediterranean climate
-*Hot Desert
-*Dry Continental
-*Oceanic
+* Humid Subtropical climate
+* Mediterranean climate
+* Hot Desert
+* Dry Continental
+* Oceanic
 
 Each type would have a different effection on daily trend based on their key features.
