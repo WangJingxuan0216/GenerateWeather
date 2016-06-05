@@ -6,7 +6,8 @@ import random
 from math import exp
 import json
 
-DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+
+DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 
 def standard_pressure(altitude):
 # calculate standard pressure by given the altitude of the location
@@ -52,7 +53,7 @@ def reading_data(line):
 
 def init_condition(data):
 	# predict what is the weather condition(rain/snow/cloudy/sunny) by given tempeature, pressure and humidity
-	# conditions:
+	# conditions when initializing:
 	# 	for cloudy: temperature is above 20 degree Celsius(warm weather), pressure under standard pressure and humidity is above 50(not too dry)
 	# 	for rain: temperature is greater than 0 degree Celsius and humidity is above 80
 	# 	for snow: temperature is equal to or less than 0 degree Celsius and humidity is above 80
@@ -73,12 +74,12 @@ def init_condition(data):
 	return data
 
 def trending(data, sunny_to_cloudy=0, cloudy_to_rain=0, cloudy_to_snow=0, rain_to_snow=0):
-	
 	#given current weather conditions and climate type, simulating the trend for next 30 minutes 
-	#assumption: using monthly minimum temperature and maximum temperature as the temperature range, assuming sun rise time is fixed as 06:00 and same for sun set time as 19:00. 14:00 is the time in a day which has a highest temperature. 
+	#assumption: assuming sun rise time is fixed as 06:00 and same for sun set time as 19:00. 14:30 is the time in a day which has a highest temperature. 
 	#	Implemented rules:
 	#	Temperature are linearly increase and descrease but two times faster after sun set for sunny day.
-	#	for cloudy day, temperature still linearly increase and descrease, but the maximum temperature reduces 2 degree, while minimum temperature increases 2 degree.
+	#	using monthly minimum temperature and maximum temperature as the temperature range to get the slope of termperature changing during the day.
+	#	for cloudy day, temperature still linearly increase and descrease, but the maximum temperature reduces 2 degree since radiation from solar is reduing, while minimum temperature increases 2 degree because of protection of cloud.
 	#	for rain/snow, temperature will descrease a constant number in every 30 minutes
 	#	relation between pressure and temperature: P_2 = P_1*T_2/T_1
 	#	humidity will descrease when temperature increases
@@ -266,6 +267,11 @@ def climate_factor(data):
 	else:
 		raise ValueError("Australia doesn't have this climate type, please varify your data")
 
+def output_formatting(data):
+	iait_code = mapping_table[data['location']]['iait']
+	coordinate = mapping_table[data['location']]['coordinate']
+	altitude = mapping_table[data['location']]['altitude']
+	return "|".join([iait_code, coordinate+","+str(altitude), data['timestamp'], data['condition'], str(data['temperature']), str(data['pressure']), str(data['humidity'])])
 
 def main(input_path, output_path):
 	output_file = open(output_path,'w')
@@ -280,9 +286,7 @@ def main(input_path, output_path):
 		for i in range(24*2):
 			(sunny_to_cloudy, cloudy_to_rain, cloudy_to_snow, rain_to_snow) = climate_factor(data)
 			new_data = trending(data, sunny_to_cloudy, cloudy_to_rain, cloudy_to_snow, rain_to_snow)
-			iait_code = mapping_table[new_data['location']]['iait']
-			coordinate = mapping_table[new_data['location']]['coordinate']
-			output_file.write("|".join([iait_code, coordinate, new_data['timestamp'], new_data['condition'], str(new_data['temperature']), str(new_data['pressure']), str(new_data['humidity'])])+"\n")
+			output_file.write(output_formatting(new_data)+"\n")
 			data = new_data
 
 	output_file.close()
