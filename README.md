@@ -5,5 +5,4 @@ To run the script, please use following code:</br>
   `python GenerateWeather.py --input input file path --output output file path`
 
 Input file format should be as following:
-
-...location,timestamp,temperature,pressure,humidity
+⋅⋅⋅location,timestamp,temperature,pressure,humidity
