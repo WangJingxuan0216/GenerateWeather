@@ -25,7 +25,7 @@ In current version, 10 cities are available:
 * initial humidity should be in a range between 0 to 110;
 
 ##Trend in a day:
-Since relation among temperature, pressure and humidity in meterology is too complicated, we simplized the relation into following regulations:
+Since relation among temperature, pressure and humidity in meteorology is too complicated, we simplized the relation into following regulations:
 * Sun rise time is fixed as 06:00 and same for sun set time as 19:00. 14:30 is the time in a day which has a highest temperature.
 * Temperature are linearly increasing after sun rise and decreasing after 14:30 but two times faster after sun set for sunny day.
 * Using historical monthly minimum temperature and maximum temperature in sepecific location as the temperature range to get the slope of termperature changing during the day.
