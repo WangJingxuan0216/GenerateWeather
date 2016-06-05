@@ -17,5 +17,7 @@ In current version, 10 cities are available:
 * Uluru
 * Perth
 * Geraldton
-* Bunbury
+* Bunbury 
 
+Assumption in the algorithm:
+1.
