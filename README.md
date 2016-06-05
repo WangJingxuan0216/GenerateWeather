@@ -20,4 +20,5 @@ In current version, 10 cities are available:
 * Bunbury 
 
 Assumption in the algorithm:
-1.
+1. initial temperature is in range between -10 ℃ to 40;
+2. initial tempreature at night should be lower than 20
