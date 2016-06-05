@@ -19,6 +19,11 @@ In current version, 10 cities are available:
 * Geraldton
 * Bunbury 
 
-Assumption in the algorithm:
-1. initial temperature is in range between -10 ℃ to 40;
-2. initial tempreature at night should be lower than 20
+Assumption for initial value:
+1. initial temperature is in a range between -10℃ to 40℃ and tempreature at night should be lower than 20℃;
+2. initial pressure should be in a range between standard air pressure at 1000m height and pressure at sea level in -15℃;
+3. initial humidity should be in a range between 0 to 110;
+
+Assumption in algorithm:
+Since relation among temperature, pressure and humidity in meterology is too complicated, we simplized the relation into following regulations:
+1. 
