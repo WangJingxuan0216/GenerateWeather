@@ -8,14 +8,15 @@ Input file format should be as following:</br>
 location,timestamp,temperature,pressure,humidity
 
 In current version, 10 cities are available:
-1. Sydney
-2. Melbourne
-3. Canberra
-4. Brisbane
-5. Adelaide
-6. Gold Coast
-7. Uluru
-8. Perth
-9. Geraldton
-10. Bunbury
+
+* Sydney
+* Melbourne
+* Canberra
+* Brisbane
+* Adelaide
+* Gold Coast
+* Uluru
+* Perth
+* Geraldton
+* Bunbury
 
