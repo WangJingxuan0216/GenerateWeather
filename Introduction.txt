@@ -1,6 +1,8 @@
 My understanding of this task is to create a program which can generate testing data for a weather model.  
 
-Using input of current weather data (temperature, pressure and humidity) in current timestamp at specific location, my program will first, predict what is current weather condition (sunny/cloudy/rain/snow), and then generate a series of forecasting data for next 24 hours in a 30 minutes interval.
+Using input of current weather data (temperature, pressure and humidity) in current timestamp at specific location, my program will
+first, predict what is current weather condition (sunny/cloudy/rain/snow), and then generate a series of forecasting data for next 24
+hours in a 30 minutes interval.
 
 I built a model including the following factors:
 1.	altitude effect
@@ -8,19 +10,31 @@ I built a model including the following factors:
 3.	solar radiation factor in a day 
 4.	correlation  between temperature and pressure, and between temperature and humidity
 
-In the method, 10 different locations across Australia have been chosen. Each location has a different climate type, such as humid subtropical climate, oceanic climate, and so on, which is caused by topography, geography and oceanography. Overall, there are 5 different types those cities can be categorized into. This feature is considered as a seasonal factor, and represented as a possibility of weather changing in different season.  Later, the system will generate a random number and compare with this possibility to decided whether to trigger a weather change or not. 
+In the method, 10 different locations across Australia have been chosen. Each location has a different climate type, such as humid
+subtropical climate, oceanic climate, and so on, which is caused by topography, geography and oceanography. Overall, there are 5
+different types those cities can be categorized into. This feature is considered as a seasonal factor, and represented as a possibility
+of weather changing in different season.  Later, the system will generate a random number and compare with this possibility to decided
+whether to trigger a weather change or not. 
 
-Besides seasonal trend, I also consider value change in a day. Basically, temperature, as the main factor, in a sunny day will increase after sunrise and start decreasing after sunset. For different month, this increasing/decreasing slope will be different based on historical average minimum/maximum temperature record. For cloudy day, this process would be smoother, and for raining/snowing day, the temperature only decreases. After updating temperature, pressure and humidity will change accordingly.
+Besides seasonal trend, I also consider value change in a day. Basically, temperature, as the main factor, in a sunny day will increase
+after sunrise and start decreasing after sunset. For different month, this increasing/decreasing slope will be different based on
+historical average minimum/maximum temperature record. For cloudy day, this process would be smoother, and for raining/snowing day, the
+temperature only decreases. After updating temperature, pressure and humidity will change accordingly.
 
-I applied some simple assumptions in the model, such as a fixed time of sunrise and sunset for all the cities. Meanwhile, I considered effects of seasonal trend. Climate type has been introduced into the model as seasonal factors which have different affection to daily trend in various locations based on their key features. 
+I applied some simple assumptions in the model, such as a fixed time of sunrise and sunset for all the cities. Meanwhile, I considered
+effects of seasonal trend. Climate type has been introduced into the model as seasonal factors which have different affection to daily
+trend in various locations based on their key features. 
 
-However, for the accuracy of the weather models, I would suggest using historical data rather than generating testing data. To get historical data, a good method would be crawling from websites.  But it may lead to a few legal issues in terms of crawling behavior and data usage as per my consulting with my legal friend. Here, I only list out my consideration of actions if this method is chosen:
+However, for the accuracy of the weather models, I would suggest using historical data rather than generating testing data. To get
+historical data, a good method would be crawling from websites.  But it may lead to a few legal issues in terms of crawling behavior
+and data usage as per my consulting with my legal friend. Here, I only list out my consideration of actions if this method is chosen:
 
 Crawling tool: scrapy in python
 
 Target website: http://www.bom.gov.au/climate
 
-The other way could be buying API from weather website, so we can use program automatically requesting data from the API. Available options are:
+The other way could be buying API from weather website, so we can use program automatically requesting data from the API. Available
+options are:
 
 Australian Bureau of Meteorology API
 http://www.bom.gov.au/catalogue/data-feeds.shtml
